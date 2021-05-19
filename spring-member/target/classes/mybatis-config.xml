@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+    <typeAliases>
+       <!-- memberMapper에서 "com.kbigdata.contact.vo.MemberVo" 알리아스 설정 -->
+<!--        <typeAlias alias="memberVO" type="com.kbigdata.contact.vo.MemberVO"/>
+       <typeAlias alias="contactVO" type="com.kbigdata.contact.vo.ContactVO"/> -->
+    </typeAliases>
+ </configuration>

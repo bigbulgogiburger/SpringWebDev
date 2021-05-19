@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- memberdao까지 접근 -->
+<mapper namespace="com.kbigdata.edu.dao.MemberDao">
+
+<select id="selectByIdPw" resultType="com.kbigdata.edu.vo.JoinVO">
+	select * from loginfo
+	where id = #{id}
+	and password = #{pw}
+
+</select>
+
+<select id="selectAll" resultType="com.kbigdata.edu.vo.MemberVO">
+<![CDATA[ 
+	select * from contact
+	where id = #{id}
+	and groupnum < 4
+	]]>
+</select>
+<select id ="searchJoin" resultType="string">
+	select username from loginfo
+	where id = #{id}
+	and password = #{pw}
+</select>
+
+<insert id="insertJoin">
+	insert into loginfo
+	values(#{id},#{pw},#{username})
+
+</insert>
+
+<insert id="insertMember">
+	insert into contact
+	values(numseq.nextval,#{name},#{phoneNumber},#{address},#{groupnum},#{id},#{detail_address},#{postcode})
+</insert>
+
+<select id="selectByPhoneNumber" resultType="com.kbigdata.edu.vo.MemberVO">
+	select * from contact
+	where phonenumber = #{phoneNumber}
+	
+</select>
+
+<select id="selectByMemberNum" resultType="com.kbigdata.edu.vo.MemberVO">
+	select * from contact
+	where membernum=#{membernum}
+</select>
+
+<update id = "updateMember">
+	update contact
+	set name = #{name}
+	   ,phonenumber=#{phoneNumber}
+	   ,address=#{address}
+	   ,groupnum =#{groupnum}
+	   ,detail_address=#{detail_address}
+	   ,postcode=#{postcode}
+	   where membernum=#{membernum}
+</update>
+
+<delete id ="deleteMember">
+	delete contact
+	where membernum = #{membernum}
+</delete>
+
+<select id = "selectUserById" resultType="com.kbigdata.edu.vo.MemberVO">
+	select * from contact
+	where id= #{id}
+	and groupnum=4
+</select>
+
+<select id = "searchMemberNumByIdPw" resultType="com.kbigdata.edu.vo.MemberVO">
+	select c.membernum
+	from contact c inner join loginfo l
+	on c.id=l.id
+	where c.groupnum=4
+	and l.id=#{id}
+	and l.password=#{pw}
+</select>
+<update id="updateJoin">
+	update loginfo
+	set username=#{username}
+	where id=#{id} and password=#{pw}
+</update>
+
+<select id="selectByCategoryName" resultType="com.kbigdata.edu.vo.MemberVO">
+	<![CDATA[
+	select * from contact
+	where name like '%'||#{name}||'%'
+	and id=#{id}
+	and groupnum<4
+	]]>
+</select>
+
+<select id="selectByCategoryPhone" resultType="com.kbigdata.edu.vo.MemberVO">
+	<![CDATA[ 
+	select * from contact
+	where phonenumber like '%'||#{phoneNumber}||'%'
+	and id=#{id}
+	and groupnum<4
+	]]>
+</select>
+
+<select id="selectByCategoryAddress" resultType="com.kbigdata.edu.vo.MemberVO">
+	<![CDATA[select * from contact
+	where address like '%'||#{address}||'%'
+	and id=#{id}
+	and groupnum<4
+	]]>
+</select>
+
+<select id="idCheck" resultType="com.kbigdata.edu.vo.JoinVO">
+	select id from loginfo
+	where id = #{id}
+</select>
+
+</mapper>

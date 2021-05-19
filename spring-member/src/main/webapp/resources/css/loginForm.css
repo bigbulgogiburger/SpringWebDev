@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+
+.search-id {
+	width:500px;
+}
+.search-pw {
+	width:500px;
+}
+
+.submit{
+
+	text-align: center;
+	margin-top : 5px;
+}
+body{
+	background : url("img/overlookbom.jpg") no-repeat;
+	background-position: center;
+	
+}
+
+.joinus {
+
+	text-align: center;
+	margin-top : 5px;
+}
+
+h1{
+	text-align: center;
+	margin-top: 30px;
+	font-size: 100px;
+	font-weight: bold;
+	margin-bottom: 40px;
+	font-family: 'Hammersmith One', sans-serif;
+}
+h1 span:nth-child(1) {
+	color: #1a1a1a	
+}
+h1 span:nth-child(2) {
+	color: #32302b
+}
+h1 span:nth-child(3) {
+	color: #595347
+}
+h1 span:nth-child(4) {
+	color: #635d42 	
+}
+h1 span:nth-child(5) {
+	color: #8c8270
+}
+h1 span:nth-child(6) {
+	color: #a89d87
+}
+h1 span:nth-child(7) {
+	color: #c4b99b
+}
+.bombook{
+	background-color: #ffffff; 
+	padding-bottom : 250px;
+	padding-top : 100px;
+	opacity: 0.7;
+	background-position: center;
+  
+}

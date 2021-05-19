@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- memberdao까지 접근 -->
+<mapper namespace="com.kbigdata.edu.dao.MemberDao">
+
+<select id="selectByIdPw" resultType="com.kbigdata.edu.vo.JoinVO">
+	select * from log_info
+	where id = #{id}
+	and password = #{pw}
+
+</select>
+
+<select id="selectAll" resultType="com.kbigdata.edu.vo.MemberVO">
+	select * from contact
+	where id =#{id}
+</select>
+</mapper>
