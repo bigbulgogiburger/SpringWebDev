@@ -19,7 +19,7 @@ public class ExceptionPrintList {
 	private MemberService memberService;
 	
 
-	
+//	ㅎㅎㅎㅎㅎㅎㅎ
 	public void NumberNotInIndexBoundPrint(int count) {
 		System.out.println("올바른 숫자를 입력하세요"+"\n"+"범위 : 1~"+count);
 	}
