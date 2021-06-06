@@ -85,7 +85,7 @@ public class ExceptionPrintList {
 				 return false;
 			 }
 		}
-
+// 깃 테스트 중입니다.
 		// 번호의 길이가 11이 아닌지, 특수문자 '-'를 포함하고 있는지 0으로 시작하지 않는지 판단하는 메소드
 		// 만약 어느 하나라도 true라면 출력문과 함께 true를 리턴한다.
 		public boolean isNotCorrectNumber(String phoneNumber) {
