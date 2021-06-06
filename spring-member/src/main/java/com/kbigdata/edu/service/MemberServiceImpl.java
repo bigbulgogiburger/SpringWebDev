@@ -30,6 +30,13 @@ public class MemberServiceImpl implements MemberService{
 			members.setPhone1(phoneNum.substring(0,3));
 			members.setPhone2(phoneNum.substring(3, 7));
 			members.setPhone3(phoneNum.substring(7));
+			if(members.getGroupnum()==1) {
+				members.setGroupName("가족");
+			}else if(members.getGroupnum()==2) {
+				members.setGroupName("친구");
+			}else {
+				members.setGroupName("기타");
+			}
 		}
 		return contactList;
 	}
@@ -145,6 +152,7 @@ public class MemberServiceImpl implements MemberService{
 
 		
 	}
+
 	
 	
 	

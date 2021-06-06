@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,18 +12,18 @@
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="loginForm.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap"
 	rel="stylesheet">
+<link href="<c:url value="/resources/css/loginForm.css" />" rel="stylesheet">
 </head>
 <body>
 	<div class="bombook">
 	<h1>
 		<span>B</span><span>O</span><span>M</span><span>B</span><span>O</span><span>O</span><span>K</span>
 	</h1>
-	<form action="LoginServlet" method="post">
+	<form action="login" method="post">
 		<div class="mb-3 search-id mx-auto">
 			<input type="text" class="form-control" id="exampleInputEmail1"
 				name="id" placeholder="아이디를 입력하세요">
@@ -41,7 +42,7 @@
 	</form>
 
 
-	<form action="JoinServlet">
+	<form action="join">
 		<div class="joinus">
 			<button type="submit" class="btn btn-secondary">JoinUs</button>
 		</div>

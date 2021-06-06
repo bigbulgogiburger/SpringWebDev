@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   
+   <!-- 데이터베이스 연결 --> 
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+   <!-- destroy-method="close" : 자동으로 close --> 
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
+      <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" /> <!-- 127.0.0.1 : localhost --> 
+      <property name="username" value="ora_user"/> 
+      <property name="password" value="hong"/> 
+   </bean>
+   
+   <!-- SqlSessionFactory(MyBatis) --> 
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+      <property name="dataSource" ref="dataSource" />
+      <!-- MyBatis 설정 파일의 위치를 지정합니다. -->
+      <property name="configLocation" value="classpath:/mybatis-config.xml" />
+      <!-- SQL 파일의 위치를 지정합니다. -->
+      <property name="mapperLocations" value="classpath:/mapper/*.xml" />
+   </bean>
+   
+   <!-- SqlSession(직원) -->
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache"> 
+      <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+   </bean>
+   
+   <!-- 지정된 베이스 패키지에서 DAO(Mapper) 를 검색하여 등록합니다. -->
+   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
+      <property name="basePackage" value="com.kbigdata.edu.dao" /> 
+   </bean>
 </beans>

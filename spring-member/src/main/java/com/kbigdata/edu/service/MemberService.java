@@ -34,6 +34,7 @@ public interface MemberService {
 	ArrayList<MemberVO> selectByCategory(String category, String value, String id, MemberVO member);
 
 	boolean idCheck(JoinVO join);
+
 	}
 
 

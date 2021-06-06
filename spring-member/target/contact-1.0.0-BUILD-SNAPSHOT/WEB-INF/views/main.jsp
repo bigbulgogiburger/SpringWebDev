@@ -11,7 +11,7 @@
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="main.css">
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap"
@@ -25,10 +25,10 @@
 	<h1>
 		<span>P</span><span>H</span><span>O</span><span>N</span><span>E</span><span>B</span><span>O</span><span>O</span><span>K</span>
 	</h1>
-	<h3><a href="MainServlet">${name }님의 회원목록</a></h3>
+	<h3><a href="main">${name }님의 회원목록</a></h3>
 
 	
-	<form action="SelectByMemberNameServlet">
+	<form action="search">
 		<select name="category" >
 			<option value="name">이름</option>
 			<option value="phonenumber">전화번호</option>
@@ -54,8 +54,8 @@
 				<td>${member.address }</td>
 				<td>${member.groupName }</td>
 				<td><a class="btn btn-outline-success"
-					  href="MemberModifyServlet?memberNum=${member.memberNum }">수정</a></td>
-				<td><a class="btn btn-outline-danger" href="DeleteServlet?memberNum=${member.memberNum }">삭제</a></td>
+					  href="update?membernum=${member.membernum }">수정</a></td>
+				<td><a class="btn btn-outline-danger" href="delete?membernum=${member.membernum }">삭제</a></td>
 			</tr>
 		</c:forEach>
 
@@ -63,9 +63,9 @@
 
 		<div class="btn-group" role="group" aria-label="Basic mixed styles example">
 		<span class="membermenu">
-			<a href="LogoutServlet" class="btn btn-outline-success" role="button">로그아웃</a>
-			<a href="ModifyServlet" class="btn btn-outline-danger" role="button">정보수정</a>
-			<a href="MemberInsertServlet" class="btn btn-outline-warning" role="button">연락처추가</a>    
+			<a href="logout" class="btn btn-outline-success" role="button">로그아웃</a>
+			<a href="userUpdate" class="btn btn-outline-danger" role="button">정보수정</a>
+			<a href="insert" class="btn btn-outline-warning" role="button">연락처추가</a>    
 	
 		</span>
 </div>
