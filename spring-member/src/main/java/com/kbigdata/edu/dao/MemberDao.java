@@ -39,4 +39,6 @@ public interface MemberDao {
 
 	JoinVO idCheck(JoinVO join);
 
+	JoinVO isAlreadyStoredId(JoinVO join);
+
 }

@@ -28,6 +28,12 @@ public class ExceptionPrintList {
 		System.out.println("문자가 아닌 숫자를 입력하세요");
 	}
 	
+	public boolean isAlreadyStoredId(JoinVO join) {
+		boolean answer = memberService.idCheck(join);
+		
+		return answer;
+	}
+	
 	
 	public boolean isNotNumber(String phoneNumber) {
 		// String타입의 phoneNumber를 이용하여 반복 가능한 char배열 type을 생성한다.
@@ -58,8 +64,7 @@ public class ExceptionPrintList {
 			try {
 				member_num = memberService.selectByPhoneNumber(member);
 				System.out.println(member_num);
-			}catch (Exception e) {
-				e.printStackTrace();
+			}catch (NullPointerException e) {
 				member_num = -1;
 			}
 			System.out.println(member_num);

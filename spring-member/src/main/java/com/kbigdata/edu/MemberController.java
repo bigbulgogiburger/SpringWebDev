@@ -22,10 +22,6 @@ import com.kbigdata.edu.vo.JoinVO;
 import com.kbigdata.edu.vo.MemberVO;
 
 
-
-/**
- * Servlet implementation class MemberController
- */
 @SessionAttributes({"id","name"})
 @Controller
 public class MemberController{
@@ -158,6 +154,12 @@ public class MemberController{
 				model.addAttribute("join", join);
 				model.addAttribute("phoneMsg", "11자리의 숫자를 입력해주세요");
 				return "joinForm";
+			}else if(exception.isAlreadyStoredId(join)){
+				model.addAttribute("member", member);
+				model.addAttribute("join", join);
+				model.addAttribute("idMsg", "중복된 아이디 입니다.");
+				return "joinForm";
+				
 			}else {
 				
 //				모든예외를 통과했다면 2개의 service method를 실행하여 각각 dao를 거쳐 db의 loginfo, contact에 전달되도록한다.
@@ -267,7 +269,7 @@ public class MemberController{
 			if(member.getName().equals("")) {
 				model.addAttribute("member", member);
 				model.addAttribute("nameMsg", "이름을 입력하지 않으셨습니다.");
-				return "joinForm";
+				return "updateForm";
 //			id가 없다면 joinForm으로 돌려보낸다.
 			}else {
 //				핸드폰 번호 validation 1. 11자리인지, 2. 숫자인지  3. 올바른 번호인지.
@@ -277,17 +279,17 @@ public class MemberController{
 				if(exception.isAlreadyStored(member)) {
 					model.addAttribute("member", member);
 					model.addAttribute("phoneMsg", "이미 저장된 번호입니다.");
-					return "joinForm";
+					return "updateForm";
 //				저장된 번호에 문자가 섞여있는지 확인
 				}else if(exception.isNotNumber(phonenumber)) {
 					model.addAttribute("member", member);
 					model.addAttribute("phoneMsg", "올바른 숫자를 입력해주세요");
-					return "joinForm";
+					return "updateForm";
 //				11자리의 숫자가 맞는지 확인한다.
 				}else if(exception.isNotCorrectNumber(phonenumber)) {
 					model.addAttribute("member", member);
 					model.addAttribute("phoneMsg", "11자리의 숫자를 입력해주세요");
-					return "joinForm";
+					return "updateForm";
 				}else {
 					
 //					모든예외를 통과했다면 2개의 service method를 실행하여 각각 dao를 거쳐 db의 loginfo, contact에 전달되도록한다.
@@ -347,6 +349,8 @@ public class MemberController{
 			join.setId(id);
 			join.setPw(pw);
 			join.setUserName(member.getName());
+			int memberNum = memberService.searchMemberNumByIdPw(join);
+			member.setMembernum(memberNum);
 			if(pw.equals("")) {
 				
 				model.addAttribute("member", member);
@@ -376,10 +380,6 @@ public class MemberController{
 					model.addAttribute("phoneMsg", "11자리의 숫자를 입력해주세요");
 					return "userUpdateForm";
 				}else {
-					
-					
-					int memberNum = memberService.searchMemberNumByIdPw(join);
-					System.out.println(memberNum);
 					
 					if(memberNum==0) {
 						model.addAttribute("member", member);
